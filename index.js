@@ -1,11 +1,11 @@
 const axios = require('axios');
 require('dotenv').config();
 
-// 🔑 Variáveis do .env
+
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
-// 🔑 Gera o token de acesso
+
 async function getAccessToken() {
     const url = 'https://id.twitch.tv/oauth2/token';
     const params = new URLSearchParams({
@@ -18,7 +18,7 @@ async function getAccessToken() {
     return response.data.access_token;
 }
 
-// 🔍 Pega o ID da categoria (jogo ou não-jogo, como ASMR)
+
 async function getCategoryId(accessToken, categoryName) {
     const url = 'https://api.twitch.tv/helix/games';
     const response = await axios.get(url, {
@@ -37,7 +37,7 @@ async function getCategoryId(accessToken, categoryName) {
     return data[0].id;
 }
 
-// 🎬 Pega os clips e filtra pelo título
+
 async function getClipsByCategory(accessToken, categoryId, keyword) {
     const url = 'https://api.twitch.tv/helix/clips';
     const response = await axios.get(url, {
@@ -47,7 +47,7 @@ async function getClipsByCategory(accessToken, categoryId, keyword) {
         },
         params: {
             game_id: categoryId,
-            first: 20 // máximo por requisição (até 100)
+            first: 20 
         }
     });
 
@@ -58,13 +58,13 @@ async function getClipsByCategory(accessToken, categoryId, keyword) {
     return filtered;
 }
 
-// 🚀 Executa tudo
+
 (async () => {
     try {
         const accessToken = await getAccessToken();
 
-        const categoryName = 'ASMR'; // Categoria da Twitch
-        const keyword = 'relax';     // Palavra-chave no título do clip
+        const categoryName = 'Fortnite'; 
+        const keyword = 'Gaming';    
 
         const categoryId = await getCategoryId(accessToken, categoryName);
         const clips = await getClipsByCategory(accessToken, categoryId, keyword);
