@@ -74,11 +74,11 @@ async function getClipsByCategory(accessToken, categoryId, keyword) {
             console.log('Nenhum clip encontrado com esse filtro.');
         } else {
             clips.forEach(clip => {
-                console.log(`🎥 ${clip.title}`);
-                console.log(`🔗 ${clip.url}\n`);
+                console.log(`${clip.title}`);
+                console.log(`${clip.url}\n`);
             });
         }
     } catch (error) {
-        console.error('❌ Erro:', error.message);
+        console.error('Erro:', error.message);
     }
 })();
