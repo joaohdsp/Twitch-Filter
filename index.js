@@ -63,8 +63,8 @@ async function getClipsByCategory(accessToken, categoryId, keyword) {
     try {
         const accessToken = await getAccessToken();
 
-        const categoryName = 'Fortnite'; 
-        const keyword = 'Gaming';    
+        const categoryName = ''; 
+        const keyword = '';    
 
         const categoryId = await getCategoryId(accessToken, categoryName);
         const clips = await getClipsByCategory(accessToken, categoryId, keyword);
